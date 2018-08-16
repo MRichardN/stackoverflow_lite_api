@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.5"
+
+install:
+  - pip install -r requirements.txt
+  - pip install python-coveralls
+  - pip install nose
+  - pip install coverage
+
+script:
+  - nosetests
+  
+after_script:
+  - coveralls
