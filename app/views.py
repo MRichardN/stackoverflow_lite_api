@@ -64,11 +64,11 @@ def update_question(question_id):
         abort(400)
     #if 'id' in request.json and type(request.json['id']) != unicode:
        # abort(400)    
-    if 'language' in request.json and type(request.json['language']) != unicode:
+    if 'language' in request.json and type(request.json['language']) != str:
         abort(400)
-    if 'ask' in request.json and type(request.json['ask']) is not unicode:
+    if 'ask' in request.json and type(request.json['ask']) is not str:
         abort(400)
-    if 'date_posted' in request.json and type(request.json['date_posted']) is not unicode:
+    if 'date_posted' in request.json and type(request.json['date_posted']) is not str:
         abort(400)
     question[0]['id'] = request.json.get('id', question[0]['id'])    
     question[0]['language'] = request.json.get('language', question[0]['language'])
@@ -79,7 +79,7 @@ def update_question(question_id):
     
 
 @app.route('/app/api/v1/questions/<int:question_id>', methods=['DELETE'])
-def delete_question(task_id):
+def delete_question(question_id):
     question = [question for question in questions if question['id'] == question_id]
     if len(question) == 0:
         abort(404)
