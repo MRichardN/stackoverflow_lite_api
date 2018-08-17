@@ -7,8 +7,6 @@ from flask import request, jsonify, abort, make_response
 
 
 app = Flask(__name__, instance_relative_config=True)
-
-
             
 
 questions = [
