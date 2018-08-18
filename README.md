@@ -1,5 +1,7 @@
 # stackoverflow_lite API
 
+[![Build Status](https://travis-ci.com/MRichardN/stackoverflow_lite_api.svg?branch=develop)](https://travis-ci.com/MRichardN/stackoverflow_lite_api)
+
 The api enables you to ask questions
 
 
