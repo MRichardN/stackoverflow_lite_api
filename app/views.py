@@ -27,14 +27,14 @@ questions = [
 
 
 #GET all questions
-@app.route('/app/api/v1/questions', methods=['GET'])
+@app.route('/api/v1/questions', methods=['GET'])
 def get_questions():
     return jsonify({'questions': questions})
 
   
 
 #GET a single question 
-@app.route('/app/api/v1/questions/<int:question_id>', methods=['GET'])
+@app.route('/api/v1/questions/<int:question_id>', methods=['GET'])
 def get_question(question_id):
     question = [question for question in questions if question['id'] == question_id]
     if len(question) == 0:
@@ -42,7 +42,7 @@ def get_question(question_id):
     return jsonify({'question': question[0]})    
 
 #POST
-@app.route('/app/api/v1/questions', methods=['POST'])
+@app.route('/api/v1/questions', methods=['POST'])
 def create_question():
     if not request.json or not 'language' in request.json:
         abort(400)
@@ -55,15 +55,15 @@ def create_question():
     return jsonify({'question': question}), 201  
 
 #PUT
-@app.route('/app/api/v1/questions/<int:question_id>', methods=['PUT'])
+@app.route('/api/v1/questions/<int:question_id>', methods=['PUT'])
 def update_question(question_id):
     question = [question for question in questions if question['id'] == question_id]
     if len(question) == 0:
         abort(404)
     if not request.json:
         abort(400)
-    #if 'id' in request.json and type(request.json['id']) != unicode:
-       # abort(400)    
+    if 'id' in request.json and type(request.json['id']) != str:
+        abort(400)    
     if 'language' in request.json and type(request.json['language']) != str:
         abort(400)
     if 'ask' in request.json and type(request.json['ask']) is not str:
@@ -78,7 +78,7 @@ def update_question(question_id):
 
     
 
-@app.route('/app/api/v1/questions/<int:question_id>', methods=['DELETE'])
+@app.route('/api/v1/questions/<int:question_id>', methods=['DELETE'])
 def delete_question(question_id):
     question = [question for question in questions if question['id'] == question_id]
     if len(question) == 0:
@@ -90,7 +90,7 @@ def delete_question(question_id):
 
 users =[]
 
-@app.route('/app/api/v1/sign_up', methods=['POST'])
+@app.route('/api/v1/sign_up', methods=['POST'])
 def sign_up():
     user = {'id': len(users)+1,
         'user_name': request.json.get('user_name'),
@@ -100,7 +100,7 @@ def sign_up():
     users.append(user)
     return jsonify({'message': 'Registration successful', 'User': users}), 201
 
-@app.route('/app/api/v1/login', methods=['POST'])
+@app.route('/api/v1/login', methods=['POST'])
 def signin():
     user_name= request.json.get("user_name")
     password= request.json.get("password")
