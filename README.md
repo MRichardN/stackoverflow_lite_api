@@ -1,6 +1,9 @@
 # stackoverflow_lite API
 
+
 [![Build Status](https://travis-ci.com/MRichardN/stackoverflow_lite_api.svg?branch=develop)](https://travis-ci.com/MRichardN/stackoverflow_lite_api)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/e8e354303b4f111a8781/maintainability)](https://codeclimate.com/github/MRichardN/stackoverflow_lite_api/maintainability)
 
 The api enables you to ask questions
 
