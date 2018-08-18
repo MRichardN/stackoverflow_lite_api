@@ -17,14 +17,22 @@ class StackOverflow_endpoint_Users(unittest.TestCase):
     def test_registering_new_user(self):
         """Test user sign_up."""
         response = self.client.post(
-            '/app/api/v1/sign_up', data=json.dumps(self.users), content_type='application/json')
+            '/api/v1/sign_up', data=json.dumps(self.users), content_type='application/json')
         self.assertEqual(response.status_code, 201)
 
     def test_user_login(self):
         """Test user login."""
         response = self.client.post(
-            '/app/api/v1/login', data=json.dumps(self.users), content_type='application/json')
+            '/api/v1/login', data=json.dumps(self.users), content_type='application/json')
         self.assertEqual(response.status_code, 200)
 
 if __name__ == "__main__":
     unittest.main()
+'''
+    def test_login(self):
+        response = self.app.get('/api/v1/login')
+        result = json.loads(response.data)
+        self.asse
+        self.assertEqual(response.status_code,)
+
+     '''   
