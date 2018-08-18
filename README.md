@@ -2,9 +2,9 @@
 
 
 [![Build Status](https://travis-ci.com/MRichardN/stackoverflow_lite_api.svg?branch=develop)](https://travis-ci.com/MRichardN/stackoverflow_lite_api)
-[![Maintainability](https://api.codeclimate.com/v1/badges/e8e354303b4f111a8781/maintainability)
-(https://codeclimate.com/github/MRichardN/stackoverflow_lite_api/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e8e354303b4f111a8781/maintainability)](https://codeclimate.com/github/MRichardN/stackoverflow_lite_api/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/MRichardN/stackoverflow_lite_api/badge.svg?branch=develop)](https://coveralls.io/github/MRichardN/stackoverflow_lite_api?branch=develop)
+
 The api enables you to ask questions
 
 
