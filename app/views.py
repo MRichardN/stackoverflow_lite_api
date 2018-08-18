@@ -44,12 +44,13 @@ def get_question(question_id):
 #POST
 @app.route('/api/v1/questions', methods=['POST'])
 def create_question():
-    if not request.json or not 'language' in request.json:
+    if not request.json:
         abort(400)
     question = {
         'id': questions[-1]['id'] + 1,
         'language': request.json['language'],
-        'date_posted': request.json.get('date_posted', "")
+        'ask': request.json['ask'],
+        'date_posted': request.json['date_posted']
     }
     questions.append(question)
     return jsonify({'question': question}), 201  
@@ -62,7 +63,7 @@ def update_question(question_id):
         abort(404)
     if not request.json:
         abort(400)
-    if 'id' in request.json and type(request.json['id']) != str:
+    if 'id' in request.json and type(request.json['id']) != int:
         abort(400)    
     if 'language' in request.json and type(request.json['language']) != str:
         abort(400)
