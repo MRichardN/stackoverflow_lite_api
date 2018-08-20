@@ -24,7 +24,9 @@ questions = [
         'date_posted': '10th May, 2018'
     }
 ]
-
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
 
 #GET all questions
 @app.route('/api/v1/questions', methods=['GET'])
