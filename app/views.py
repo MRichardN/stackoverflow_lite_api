@@ -117,4 +117,4 @@ def signin():
     return jsonify({'message': 'Logged in successsfully'})      
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
