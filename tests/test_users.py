@@ -28,11 +28,3 @@ class StackOverflow_endpoint_Users(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-'''
-    def test_login(self):
-        response = self.app.get('/api/v1/login')
-        result = json.loads(response.data)
-        self.asse
-        self.assertEqual(response.status_code,)
-
-     '''   

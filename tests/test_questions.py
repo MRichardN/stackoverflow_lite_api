@@ -5,7 +5,7 @@ import os
 
 from app.views import create_app
 
-class TestStackOverflow_endpoint(unittest.TestCase):
+class TestStackOverflow_endpoint_questions(unittest.TestCase):
     """This class represents stackoverflow-lite endpoint test case"""
     
     def setUp(self):
@@ -39,7 +39,10 @@ class TestStackOverflow_endpoint(unittest.TestCase):
         response = self.client.put(
             '/api/v1/questions/1', data=json.dumps(self.questions), content_type='application/json')
         self.assertEqual(response.status_code, 200)
-        #200
+        
+
+
+      
 
 if __name__ == "__main__":
     unittest.main()

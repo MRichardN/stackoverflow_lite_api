@@ -24,6 +24,8 @@ questions = [
         'date_posted': '10th May, 2018'
     }
 ]
+
+
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
@@ -33,7 +35,7 @@ def not_found(error):
 def get_questions():
     return jsonify({'questions': questions})
 
-  
+ 
 
 #GET a single question 
 @app.route('/api/v1/questions/<int:question_id>', methods=['GET'])
@@ -114,7 +116,26 @@ def signin():
 
     if not user:
         return jsonify({'message': 'New user?, Please sign_up'})
-    return jsonify({'message': 'Logged in successsfully'})      
+    return jsonify({'message': 'Logged in successsfully'})     
+
+
+
+answers = {}
+
+
+ #GET all answers
+@app.route('/api/v1/questions/answers', methods=['GET'])
+def get_answers():
+    return jsonify({'answers': answers})
+
+
+#GET a single answer 
+@app.route('/api/v1/questions/<int:answer_id>', methods=['GET'])
+def get_answer(answer_id):
+    answer = [answer for answer in answers if answer['id'] == answer_id]
+    if len(answer) == 0:
+        abort(404)
+    return jsonify({'answer': answer[0]})    
 
 if __name__ == '__main__':
     app.run()
