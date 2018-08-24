@@ -4,6 +4,7 @@ import os
 
 
 from app.views import create_app
+from app.models import Question
 
 class TestStackOverflow_endpoint_questions(unittest.TestCase):
     """This class represents stackoverflow-lite endpoint test case"""
@@ -12,7 +13,7 @@ class TestStackOverflow_endpoint_questions(unittest.TestCase):
         """Define the test variables and initialize the application."""
         self.app = create_app(config_name="testing")
         self.client = self.app.test_client()
-        self.questions = {'id':1,'ask':'What is the difference between django and flask','language':'python', 'date_posted': '7th May 2017'}
+        self.questions = {'ask':'What is the difference between django and flask','language':'python', 'date_posted': '7th May 2017'}
         
     def test_posting_of_questions(self):
         """test user can post a question (POST request)"""
