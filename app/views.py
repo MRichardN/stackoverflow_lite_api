@@ -1,9 +1,9 @@
 #app/views.py
 
-from app.__init__ import create_app
-
 from flask import Flask
 from flask import request, jsonify, abort, make_response
+
+from app.__init__ import create_app
 
 
 app = Flask(__name__, instance_relative_config=True)
@@ -24,6 +24,9 @@ questions = [
         'date_posted': '10th May, 2018'
     }
 ]
+
+users =[]
+answers = []
 
 
 @app.errorhandler(404)
@@ -93,10 +96,10 @@ def delete_question(question_id):
 
 
 
-users =[]
 
-@app.route('/api/v1/sign_up', methods=['POST'])
-def sign_up():
+
+@app.route('/api/v1/auth/signup', methods=['POST'])
+def signup():
     user = {'id': len(users)+1,
         'user_name': request.json.get('user_name'),
         'email': request.json.get('email'),
@@ -105,7 +108,7 @@ def sign_up():
     users.append(user)
     return jsonify({'message': 'Registration successful', 'User': users}), 201
 
-@app.route('/api/v1/login', methods=['POST'])
+@app.route('/api/v1/auth/login', methods=['POST'])
 def signin():
     user_name= request.json.get("user_name")
     password= request.json.get("password")
@@ -120,7 +123,7 @@ def signin():
 
 
 
-answers = {}
+
 
 
  #GET all answers
@@ -135,7 +138,24 @@ def get_answer(answer_id):
     answer = [answer for answer in answers if answer['id'] == answer_id]
     if len(answer) == 0:
         abort(404)
-    return jsonify({'answer': answer[0]})    
+    return jsonify({'answer': answer[0]})   
+
+
+  
+'''
+@app.route('/api/v1/questions_id/answers', methods=['POST'])
+def create_answer():
+    if not request.json:
+        abort(400)
+    answer = {
+        'id': answers[-1]['id'] + 1,
+        'language': request.json['language'],
+        'ans': request.json['ans'],
+        'date_posted': request.json['date_posted']
+    }
+    answers.append(answer)
+    return jsonify({'answer': answer}), 201  
+'''
 
 if __name__ == '__main__':
     app.run()
