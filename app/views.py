@@ -4,7 +4,8 @@ from flask import Flask
 from flask import request, jsonify, abort, make_response
 
 from app.__init__ import create_app
-
+from app.models import Question
+from app.models import User
 
 app = Flask(__name__, instance_relative_config=True)
             
