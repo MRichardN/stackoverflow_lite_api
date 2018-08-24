@@ -8,7 +8,13 @@ from flask import request, jsonify, abort, make_response
 
 app = Flask(__name__, instance_relative_config=True)
             
-
+answers = [{
+         'id': 1,
+        'language': 'python',
+        'ans':'using pip',
+        'date_posted': '7th July, 2018'
+}
+]
 questions = [
     {
         'id': 1,
@@ -25,7 +31,7 @@ questions = [
     }
 ]
 
-
+answer = [answer for answer in answers if answer["id"] ==["id"]]
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
@@ -120,7 +126,7 @@ def signin():
 
 
 
-answers = {}
+
 
 
  #GET all answers
@@ -129,13 +135,27 @@ def get_answers():
     return jsonify({'answers': answers})
 
 
-#GET a single answer 
-@app.route('/api/v1/questions/<int:answer_id>', methods=['GET'])
+#GET all answers for a specific question 
+@app.route('/api/v1/questions/<int:id>/answers', methods=['GET'])
 def get_answer(answer_id):
     answer = [answer for answer in answers if answer['id'] == answer_id]
     if len(answer) == 0:
         abort(404)
-    return jsonify({'answer': answer[0]})    
+    return jsonify({'answer': answer[0]})   
+
+@app.route('/api/v1/questions_id/answers', methods=['POST'])
+def create_answer():
+    if not request.json:
+        abort(400)
+    answer = {
+        'id': answers[-1]['id'] + 1,
+        'language': request.json['language'],
+        'ans': request.json['ans'],
+        'date_posted': request.json['date_posted']
+    }
+    answers.append(answer)
+    return jsonify({'answer': answer}), 201  
+
 
 if __name__ == '__main__':
     app.run()

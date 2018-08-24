@@ -24,8 +24,14 @@ class TestStackOverflow_endpoint_answers(unittest.TestCase):
         """Test user can view a single answer."""
         response = self.client.get(
             '/api/v1/questions/1', data=json.dumps(self.answers), content_type='application/json')
-        self.assertEqual(response.status_code, 200)    
-
+        self.assertEqual(response.status_code, 200)  
+'''
+    def test_posting_answer__to_specific_questions(self):
+        """test user can post a answer/s to a specific question (POST request)"""
+        response = self.client.post(
+            '/api/v1/1/answers', data=json.dumps(self.answers), content_type='application/json')
+        self.assertEqual(response.status_code, 201)      
+'''
 
 if __name__ == "__main__":
     unittest.main()        
