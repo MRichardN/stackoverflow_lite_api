@@ -126,7 +126,7 @@ def signin():
 
 
 
-
+'''
 
 
  #GET all answers
@@ -155,6 +155,8 @@ def create_answer():
     }
     answers.append(answer)
     return jsonify({'answer': answer}), 201  
+
+    '''
 
 
 if __name__ == '__main__':

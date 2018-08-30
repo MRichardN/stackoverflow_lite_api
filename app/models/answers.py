@@ -1,3 +1,4 @@
+'''
 from flask import jsonify
 from datetime import datetime
 import psycopg2
@@ -22,7 +23,7 @@ class Answer(object):
 		}
 		self.answers.append(new_answer)
 		return new_answer
-'''
+
 
 def create(self, question_id, ask, language):
     con=psycopg2.connect(((**params)))
